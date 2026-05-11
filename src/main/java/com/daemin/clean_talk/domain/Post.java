@@ -31,4 +31,13 @@ public class Post extends BaseEntity {
     @Lob
     @Column(name = "content", nullable = false, columnDefinition = "TEXT")
     private String content;
+
+    private Post(User user, String content) {
+        this.user = user;
+        this.content = content;
+    }
+
+    public static Post create(User user, String content) {
+        return new Post(user, content);
+    }
 }

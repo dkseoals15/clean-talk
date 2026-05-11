@@ -47,4 +47,20 @@ public class ModerationResult {
     @CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
+
+    private ModerationResult(Comment comment, Boolean toxic, String reason, String refinedContent) {
+        this.comment = comment;
+        this.toxic = toxic;
+        this.reason = reason;
+        this.refinedContent = refinedContent;
+    }
+
+    public static ModerationResult create(
+            Comment comment,
+            Boolean toxic,
+            String reason,
+            String refinedContent
+    ) {
+        return new ModerationResult(comment, toxic, reason, refinedContent);
+    }
 }
